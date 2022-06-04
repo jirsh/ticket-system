@@ -20,10 +20,17 @@ alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'
 To set up the project follow these commands
 ```sh
 sail up -d # runs the different docker containers such as the web server itself and mysql
+sail composer install # installs and optimises composer packages
+sail npm install # installs node packages
 sail artisan migrate # runs migrations
 ```
 
 Optionally you can choose to seed the database
 ```sh
 sail artisan db:seed
+```
+
+To compile the css (for tailwind and whatnot)
+```sh
+sail npm run prod # or dev if you want it to update(pick your poison in package.json)
 ```
