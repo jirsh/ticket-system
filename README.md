@@ -7,7 +7,18 @@
 - Attachments
 - Edit and deletion of tickets/replies
 
-## How to build
+## Preview
+Index page:
+
+![preview_1](https://github.com/jirsh/ticket-system/blob/main/preview_1.png?raw=true)
+
+Ticket page:
+
+![preview_2](https://github.com/jirsh/ticket-system/blob/main/preview_2.png?raw=true)
+
+Both pages do have pagination.
+
+## Getting Started
 This project was made using [Laravel Sail](https://laravel.com/docs/9.x/sail)
 
 Laravel sail requires you to have [docker](https://www.docker.com) and [docker compose](https://docs.docker.com/compose/)
