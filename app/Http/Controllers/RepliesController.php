@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Helpers\AttachmentHelper;
 use App\Http\Requests\CreateReplyRequest;
 use App\Models\Reply;
-use App\Models\Attachment;
 use App\Models\Ticket;
 
 class RepliesController extends Controller
@@ -28,20 +27,10 @@ class RepliesController extends Controller
         $reply->body = $validated['body'];
         $reply->ticket_id = $ticket->id;
         $reply->save();
-        
-        if ($request->hasFile('files')) {
-            foreach ($request->file('files') as $file) {
-                if (!$file->isValid())
-                    continue;
-                
-                $attachment = new Attachment;
-                $attachment->original_file_name = $file->getClientOriginalName();
-                $attachment->reply()->associate($reply);
-                $attachment->save();
-                $file->store('files/' . $attachment->id);
-            }
-        }
+
+        if ($request->hasFile('files'))
+            AttachmentHelper::storeAttachments($request->file('files'), $reply);
 
         return redirect()->route('ticket.show', ['id' => $ticketId]);
-    } 
+    }
 }

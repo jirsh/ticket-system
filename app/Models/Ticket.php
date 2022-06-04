@@ -29,7 +29,8 @@ class Ticket extends Model
         'status' => 'open',
     ];
 
-    public function replies() {
+    public function replies()
+    {
         return $this->hasMany(Reply::class);
     }
 }

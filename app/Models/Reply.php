@@ -18,11 +18,13 @@ class Reply extends Model
         'body',
     ];
 
-    public function attachments() {
+    public function attachments()
+    {
         return $this->hasMany(Attachment::class);
     }
 
-    public function ticket() {
+    public function ticket()
+    {
         return $this->belongsTo(Ticket::class);
     }
 }

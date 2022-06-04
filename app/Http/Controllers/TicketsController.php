@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Helpers\AttachmentHelper;
 use App\Http\Requests\CreateTicketRequest;
 use App\Models\Ticket;
 use App\Models\Reply;
-use App\Models\Attachment;
 
 class TicketsController extends Controller
 {
@@ -39,22 +38,12 @@ class TicketsController extends Controller
         $reply->body = $validated['body'];
         $reply->ticket()->associate($ticket);
         $reply->save();
-        
-        if ($request->hasFile('files')) {
-            foreach ($request->file('files') as $file) {
-                if (!$file->isValid())
-                    continue;
-                
-                $attachment = new Attachment;
-                $attachment->original_file_name = $file->getClientOriginalName();
-                $attachment->reply()->associate($reply);
-                $attachment->save();
-                $file->store('files/' . $attachment->id);
-            }
-        }
+
+        if ($request->hasFile('files'))
+            AttachmentHelper::storeAttachments($request->file('files'), $reply);
 
         return redirect()->route('ticket.show', ['id' => $ticket->id]);
-    } 
+    }
 
     /**
      * Store a new blog post.
@@ -67,10 +56,10 @@ class TicketsController extends Controller
         $ticket = Ticket::findOrFail($id);
 
         return view('ticket', [
-            'ticket' => $ticket, 
+            'ticket' => $ticket,
             'replies' => $ticket->replies()
-                                ->orderBy('updated_at', 'desc')
-                                ->paginate(5)
-                            ]);
-    } 
+                ->orderBy('updated_at', 'desc')
+                ->paginate(5)
+        ]);
+    }
 }

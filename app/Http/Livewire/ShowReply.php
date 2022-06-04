@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Attachment;
+use App\Helpers\AttachmentHelper;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -44,19 +44,10 @@ class ShowReply extends Component
         if (empty($this->files))
             return;
 
-        foreach ($this->reply->attachments()->get() as $attachment)
+        foreach ($this->reply->attachments as $attachment)
             $attachment->delete(); // delete old attachments, done in this loop to fire event and actually delete from the filesystem
 
-        foreach ($this->files as $file) {
-            if (!$file->isValid())
-                    continue;
-                
-            $attachment = new Attachment();
-            $attachment->original_file_name = $file->getClientOriginalName();
-            $attachment->reply()->associate($this->reply);
-            $attachment->save();
-            $file->store('files/' . $attachment->id);
-        }
+        AttachmentHelper::storeAttachments($this->files, $this->reply);
     }
 
     public function delete()

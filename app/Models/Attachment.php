@@ -15,7 +15,8 @@ class Attachment extends Model
         'original_file_name',
     ];
 
-    public function reply() {
+    public function reply()
+    {
         return $this->belongsTo(Reply::class);
     }
 }

@@ -16,8 +16,10 @@
         <button class="text-slate-300" wire:click="delete">delete</button>
     </div>
     @endif
-    @foreach($reply->attachments()->get() as $attachment)
+    @if(!empty($reply->attachments))
+    @foreach($reply->attachments as $attachment)
     <a class="p-3"
         href="{{route('attachment.download', ['id' => $attachment->id])}}">{{$attachment->original_file_name}}</a>
     @endforeach
+    @endif
 </div>
