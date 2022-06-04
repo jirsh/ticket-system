@@ -1,5 +1,5 @@
-<form class="flex flex-col bg-slate-800 p-3 rounded space-y-3 text-black" id="post-ticket" action="/tickets"
-    method="POST" enctype="multipart/form-data">
+<form class="flex flex-col bg-slate-800 p-3 rounded space-y-3 text-black" id="post-ticket"
+    action="{{route('tickets.new', [], false)}}" method="POST" enctype="multipart/form-data">
     @csrf
     @if ($errors->any())
     <div class="p-1 text-sm text-red-500 rounded bg-slate-700 flex flex-col space-y-1">

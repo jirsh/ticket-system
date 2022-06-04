@@ -13,12 +13,12 @@
         <div class="rounded-lg @if($ticket->status == 'open') bg-green-500 @else bg-red-500 @endif}} p-2">{{
             $ticket->status }}
         </div>
-        <button wire:click="delete" class="rounded-lg bg-red-500 p-2">Delete</button>
-        <button wire:click="switchStatus" class="rounded-lg bg-blue-500 p-2">@if($ticket->status == 'open') Close
+        <button wire:click="delete" class="rounded-lg bg-red-500 p-2">delete</button>
+        <button wire:click="switchStatus" class="rounded-lg bg-blue-500 p-2">@if($ticket->status == 'open') close
             @else
-            Open @endif</button>
+            open @endif</button>
         @if (!$isEditing)
-        <button wire:click="edit" class="rounded-lg bg-teal-500 p-2">Edit</button>
+        <button wire:click="edit" class="rounded-lg bg-teal-500 p-2">edit</button>
         @endif
     </div>
 </div>

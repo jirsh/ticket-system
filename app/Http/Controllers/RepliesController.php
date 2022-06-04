@@ -3,25 +3,30 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\PostNewReplyRequest;
+use App\Http\Requests\CreateReplyRequest;
 use App\Models\Reply;
 use App\Models\Attachment;
+use App\Models\Ticket;
 
-class Replies extends Controller
+class RepliesController extends Controller
 {
     /**
-     * Store a new blog post.
+     * Stores a new reply.
      *
-     * @param  \App\Http\Requests\PostNewReplyRequest  $request
+     * @param  \App\Http\Requests\CreateReplyRequest  $request
+     * @param  int $ticketId
+     * 
      * @return Illuminate\Http\Response
      */
-    public function post(PostNewReplyRequest $request, $ticketId)
+    public function store(CreateReplyRequest $request, $ticketId)
     {
         $validated = $request->validated();
 
+        $ticket = Ticket::findOrFail($ticketId);
+
         $reply = new Reply;
         $reply->body = $validated['body'];
-        $reply->ticket_id = $ticketId;
+        $reply->ticket_id = $ticket->id;
         $reply->save();
         
         if ($request->hasFile('files')) {

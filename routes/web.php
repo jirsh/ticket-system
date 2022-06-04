@@ -2,17 +2,17 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\Homepage;
-use App\Http\Controllers\Tickets;
-use App\Http\Controllers\Replies;
-use App\Http\Controllers\Attachment;
+use App\Http\Controllers\HomepageController;
+use App\Http\Controllers\TicketsController;
+use App\Http\Controllers\RepliesController;
+use App\Http\Controllers\AttachmentController;
 
-Route::get('/', [Homepage::class, 'index'])->name('home');
+Route::get('/', [HomepageController::class, 'index'])->name('home');
 
-Route::get('/tickets/{id}', [Tickets::class, 'show'])->name('ticket.show');
+Route::get('/tickets/{id}', [TicketsController::class, 'show'])->name('ticket.show');
 
-Route::get('/attachment/{id}', [Attachment::class, 'download'])->name('attachment.download');
+Route::post('/tickets', [TicketsController::class, 'store'])->name('tickets.new');
 
-Route::post('/tickets', [Tickets::class, 'post']);
+Route::post('/reply/{ticketId}', [RepliesController::class, 'store'])->name('reply.new');
 
-Route::post('/reply/{ticketId}', [Replies::class, 'post']);
+Route::get('/attachment/{id}', [AttachmentController::class, 'download'])->name('attachment.download');

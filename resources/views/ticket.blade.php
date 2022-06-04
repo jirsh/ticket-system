@@ -11,7 +11,7 @@
     </div>
     {{$replies->links()}}
     <form class="flex flex-col bg-slate-800 p-3 rounded space-y-3 text-black" id="post-ticket"
-        action="/reply/{{$ticket->id}}" method="POST" enctype="multipart/form-data">
+        action="{{route('reply.new', ['ticketId' => $ticket->id], false)}}" method="POST" enctype="multipart/form-data">
         @csrf
         @if ($errors->any())
         <div class="p-1 text-sm text-red-500 rounded bg-slate-700 flex flex-col space-y-1">

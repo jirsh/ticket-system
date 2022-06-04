@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Ticket;
 
-class Homepage extends Controller
+class HomepageController extends Controller
 {
     /**
      * Renders the homepage

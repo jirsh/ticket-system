@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Reply;
 use Illuminate\Support\Facades\Storage;
 
-class Attachment extends Controller
+class AttachmentController extends Controller
 {
     /**
      * Downloads attachment.

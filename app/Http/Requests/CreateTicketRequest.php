@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PostNewReplyRequest extends FormRequest
+class CreateTicketRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,10 @@ class PostNewReplyRequest extends FormRequest
     public function rules()
     {
         return [
+            'title' => 'required|min:3|max:255',
+            'email' => 'required|email',
             'body' => 'required|min:3',
-            'file' => 'file'
+            'file' => 'file|max:10000'
         ];
     }
 }

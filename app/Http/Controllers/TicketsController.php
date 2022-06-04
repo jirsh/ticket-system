@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\PostNewTicketRequest;
+use App\Http\Requests\CreateTicketRequest;
 use App\Models\Ticket;
 use App\Models\Reply;
 use App\Models\Attachment;
 
-class Tickets extends Controller
+class TicketsController extends Controller
 {
     /**
      * Renders the homepage
@@ -21,12 +21,12 @@ class Tickets extends Controller
     }
 
     /**
-     * Store a new blog post.
+     * Stores a new ticket with a reply.
      *
-     * @param  \App\Http\Requests\PostNewTicketRequest  $request
+     * @param  \App\Http\Requests\CreateTicketRequest  $request
      * @return Illuminate\Http\Response
      */
-    public function post(PostNewTicketRequest $request)
+    public function store(CreateTicketRequest $request)
     {
         $validated = $request->validated();
 
@@ -64,10 +64,7 @@ class Tickets extends Controller
      */
     public function show($id)
     {
-        $ticket = Ticket::find($id);
-        if (!$ticket) {
-            return abort(404);
-        }
+        $ticket = Ticket::findOrFail($id);
 
         return view('ticket', [
             'ticket' => $ticket, 
