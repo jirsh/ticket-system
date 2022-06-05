@@ -21,7 +21,7 @@ class ShowTicket extends Component
 
     public function render()
     {
-        return view('livewire.ticket');
+        return view('livewire.show-ticket');
     }
 
     public function delete()

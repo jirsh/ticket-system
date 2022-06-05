@@ -5,20 +5,9 @@ namespace App\Http\Controllers;
 use App\Helpers\AttachmentHelper;
 use App\Http\Requests\CreateTicketRequest;
 use App\Models\Ticket;
-use App\Models\Reply;
 
 class TicketsController extends Controller
 {
-    /**
-     * Renders the homepage
-     *
-     * @return \Illuminate\View\View
-     */
-    public function index()
-    {
-        return view('index', []);
-    }
-
     /**
      * Stores a new ticket with a reply.
      *
@@ -29,15 +18,9 @@ class TicketsController extends Controller
     {
         $validated = $request->validated();
 
-        $ticket = new Ticket;
-        $ticket->title = $validated['title'];
-        $ticket->author = $validated['email'];
-        $ticket->save();
+        $ticket = Ticket::create($request->only(['title', 'author']));
 
-        $reply = new Reply;
-        $reply->body = $validated['body'];
-        $reply->ticket()->associate($ticket);
-        $reply->save();
+        $reply = $ticket->replies()->create($request->only(['body']));
 
         if ($request->hasFile('files'))
             AttachmentHelper::storeAttachments($request->file('files'), $reply);

@@ -27,7 +27,7 @@ class ShowReply extends Component
 
     public function render()
     {
-        return view('livewire.reply');
+        return view('livewire.show-reply');
     }
 
     public function edit()

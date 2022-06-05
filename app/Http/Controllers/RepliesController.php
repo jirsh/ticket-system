@@ -23,10 +23,7 @@ class RepliesController extends Controller
 
         $ticket = Ticket::findOrFail($ticketId);
 
-        $reply = new Reply;
-        $reply->body = $validated['body'];
-        $reply->ticket_id = $ticket->id;
-        $reply->save();
+        $reply = $ticket->replies()->create($request->only(['body']));
 
         if ($request->hasFile('files'))
             AttachmentHelper::storeAttachments($request->file('files'), $reply);

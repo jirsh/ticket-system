@@ -10,7 +10,7 @@
     @endif
 
     <input class="p-3 rounded text-lg" type="text" name="title" id="title" placeholder="Title">
-    <input class="p-3 rounded text-lg" type="email" name="email" id="email" placeholder="email@example.com">
+    <input class="p-3 rounded text-lg" type="email" name="author" id="author" placeholder="email@example.com">
     <textarea class="p-3 rounded" name="body" id="body" cols="30" rows="10"
         placeholder="Please explain the issue that you're having"></textarea>
     <input class="bg-slate-700 p-3 rounded text-white file:rounded file:p-2" name="files[]" type="file"

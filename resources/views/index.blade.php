@@ -2,10 +2,7 @@
 
 @section('content')
 
-@foreach($tickets as $ticket)
-<x-tickets.preview :id="$ticket->id" :title="$ticket->title" :author="$ticket->author" :status="$ticket->status" />
-@endforeach
+<livewire:show-tickets />
 <x-tickets.post-form />
-{{ $tickets->links() }}
 
 @endsection

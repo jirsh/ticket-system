@@ -20,10 +20,10 @@ class AttachmentHelper
             if (!$file->isValid())
                 continue;
 
-            $attachment = new Attachment;
-            $attachment->original_file_name = $file->getClientOriginalName();
-            $attachment->reply()->associate($reply);
-            $attachment->save();
+            $attachment = $reply->attachments()->create([
+                'original_file_name' => $file->getClientOriginalName()
+            ]);
+
             $file->store('files/' . $attachment->id);
         }
     }

@@ -30,7 +30,10 @@ alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'
 
 To set up the project follow these commands
 ```sh
+cp .env.example .env
+vi .env # and edit whatever needs editing(by default it's configured for sail)
 sail up -d # runs the different docker containers such as the web server itself and mysql
+sail artisan key:generate # generates a new app key
 sail composer install # installs and optimises composer packages
 sail npm install # installs node packages
 sail artisan migrate # runs migrations
