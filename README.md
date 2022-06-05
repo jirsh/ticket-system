@@ -48,3 +48,6 @@ To compile the css (for tailwind and whatnot)
 ```sh
 sail npm run prod # or dev if you want it to update(pick your poison in package.json)
 ```
+
+## TODO
+- Show when tickets/replies were created/updated, backend wise this already exists as everything is ordered by when it was updated.
