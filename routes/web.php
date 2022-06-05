@@ -7,6 +7,8 @@ use App\Http\Controllers\TicketsController;
 use App\Http\Controllers\RepliesController;
 use App\Http\Controllers\AttachmentController;
 
+// I know, I can use Route::controller and/or Route::name here but it's not needed for 5 routes.
+
 Route::get('/', [HomepageController::class, 'index'])
     ->name('home');
 
