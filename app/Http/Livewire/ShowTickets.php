@@ -12,6 +12,8 @@ class ShowTickets extends Component
 
     public $search = '';
 
+    public $filter = '*';
+
     protected $queryString = [
         'search' => ['except' => ''],
         'page' => ['except' => 1],
@@ -27,7 +29,8 @@ class ShowTickets extends Component
         return view('livewire.show-tickets', [
             'tickets' =>
             Ticket::select(["id", "title", "author", "status"])
-                ->where('title', 'like', '%' . $this->search . '%')
+                ->when($this->search !== '', fn ($collection) => $collection->where('title', 'like', '%' . $this->search . '%'))
+                ->when($this->filter !== '*', fn ($collection) => $collection->where('status', $this->filter))
                 ->orderBy('updated_at', 'desc')
                 ->paginate(5)
         ]);
