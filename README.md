@@ -18,6 +18,10 @@ Ticket page:
 
 Both pages do have pagination.
 
+Search and filter:
+
+![preview_3](https://github.com/jirsh/ticket-system/blob/main/preview_3.png?raw=true)
+
 ## Getting Started
 This project was made using [Laravel Sail](https://laravel.com/docs/9.x/sail)
 
