@@ -22,7 +22,7 @@
         @endif
 
         <textarea class="p-3 rounded" name="body" id="body" cols="30" rows="10"
-            placeholder="Please explain the issue that you're having"></textarea>
+            placeholder="Please explain the issue that you're having">{{ old('body') }}</textarea>
         <input class="bg-slate-700 p-3 rounded text-white file:rounded file:p-2" name="files[]" type="file"
             multiple></input>
         <input class="bg-slate-700 hover:bg-slate-600 transition-colors py-2 px-3 rounded text-white cursor-pointer"
